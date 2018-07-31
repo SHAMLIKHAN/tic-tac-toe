@@ -1,0 +1,121 @@
+<html>
+  <title>TicTacToe</title>
+  <link rel="shortcut icon" href="tictactoe.jpg" />
+  <head>
+    <style>
+      .container {
+        position: fixed;
+        top: 30%;
+        left: 40%;
+      }
+      .output {
+        text-align: center;
+      }
+      table, td {
+        border: 1px solid white;
+        color:white;
+      }
+      img {
+        height: 50px;
+        width: 50px;
+      }
+    </style>
+    <script>
+      var count=0;
+      var a = new Array(10);
+      for(var i=1;i<10;i++){
+        a[i]=0;
+      }
+      function winnercheck(){
+        if( (a[1]==a[2] && a[2]==a[3] && a[1]==1)||
+            (a[1]==a[5] && a[5]==a[9] && a[1]==1)||
+            (a[1]==a[4] && a[4]==a[7] && a[1]==1)||
+            (a[2]==a[5] && a[5]==a[8] && a[2]==1)||
+            (a[3]==a[6] && a[6]==a[9] && a[3]==1)||
+            (a[3]==a[5] && a[5]==a[7] && a[3]==1)||
+            (a[4]==a[5] && a[5]==a[6] && a[4]==1)||
+            (a[7]==a[8] && a[8]==a[9] && a[7]==1) )
+        {
+          document.getElementById("winner").innerHTML="X is the Winner!";
+        }
+        else if(  (a[1]==a[2] && a[2]==a[3] && a[1]==2)||
+                  (a[1]==a[5] && a[5]==a[9] && a[1]==2)||
+                  (a[1]==a[4] && a[4]==a[7] && a[1]==2)||
+                  (a[2]==a[5] && a[5]==a[8] && a[2]==2)||
+                  (a[3]==a[6] && a[6]==a[9] && a[3]==2)||
+                  (a[3]==a[5] && a[5]==a[7] && a[3]==2)||
+                  (a[4]==a[5] && a[5]==a[6] && a[4]==2)||
+                  (a[7]==a[8] && a[8]==a[9] && a[7]==2) )
+        {
+          document.getElementById("winner").innerHTML="0 is the Winner!";
+        }
+        else if(  a[1]!=0 && a[2]!=0 && a[3]!=0 &&
+                  a[4]!=0 && a[5]!=0 && a[6]!=0 &&
+                  a[7]!=0 && a[8]!=0 && a[9]!=0 )
+        {
+          document.getElementById("winner").innerHTML="Draw!";
+        }
+      }
+      function changeimage(element){
+        var num = Number(element.id);
+        if(count%2==0 && a[num]==0){
+          element.setAttribute('src','x.png');
+          a[num]=1;
+          winnercheck();
+        }
+        else if(count%2==1 && a[num]==0) {
+          element.setAttribute('src','zero.png');
+          a[num]=2;
+          winnercheck();
+        }
+        count++;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div>
+        <table id="table">
+          <tr>
+            <td>
+              <img id="1" src="default.png" onclick="changeimage(this)"></img>
+            </td>
+            <td>
+              <img id="2" src="default.png" onclick="changeimage(this)"></img>
+            </td>
+            <td>
+              <img id="3" src="default.png" onclick="changeimage(this)"></img>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <img id="4" src="default.png" onclick="changeimage(this)"></img>
+            </td>
+            <td>
+              <img id="5" src="default.png" onclick="changeimage(this)"></img>
+            </td>
+            <td>
+              <img id="6" src="default.png" onclick="changeimage(this)"></img>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <img id="7" src="default.png" onclick="changeimage(this)"></img>
+            </td>
+            <td>
+              <img id="8" src="default.png" onclick="changeimage(this)"></img>
+            </td>
+            <td>
+              <img id="9" src="default.png" onclick="changeimage(this)"></img>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="output">
+        <h2><p id="winner"></p></h2>
+      </div>
+    </div>
+  </body>
+</html>
